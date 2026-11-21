@@ -13,12 +13,21 @@
         <div v-if="loading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full py-10">
           <SkeletonCard v-for="n in 4" :key="n" />
         </div>
-        <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div v-else-if="portfolio.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <PortfolioCard
-            v-for="item in displayPortfolio"
+            v-for="item in portfolio"
             :key="item.id"
             :item="item"
           />
+        </div>
+        <div v-else class="text-center py-20 bg-white rounded-2xl border border-neutral-200">
+          <div class="w-12 h-12 rounded-xl bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center text-brand-orange mx-auto mb-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+            </svg>
+          </div>
+          <p class="text-neutral-700 font-semibold">Belum Ada Karya Portofolio</p>
+          <p class="text-neutral-500 text-sm mt-1">Data proyek portofolio dapat ditambahkan melalui panel admin.</p>
         </div>
       </div>
     </section>
@@ -28,70 +37,13 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import SkeletonCard from '@/components/ui/SkeletonCard.vue'
 import SectionLabel from '@/components/ui/SectionLabel.vue'
 import PortfolioCard from '@/components/ui/PortfolioCard.vue'
 import CtaContactSection from '@/components/sections/CtaContactSection.vue'
 import { portfolioService } from '@/services/api/portfolio.service'
 import { useSeoMeta } from '@/composables/useSeoMeta'
-
-const fallbackPortfolio = [
-  {
-    id: 'f1',
-    title: 'Huruf Timbul Stainless Backlit',
-    category: 'Huruf Timbul',
-    image: '/hero-bg.webp',
-    client: 'Klinik Estetika Glow',
-    location: 'Jember',
-    description: 'Huruf timbul stainless steel 304 dengan pencahayaan LED warm white untuk estetika elegan.'
-  },
-  {
-    id: 'f2',
-    title: 'Neon Box Akrilik Bulat Dua Sisi',
-    category: 'Neon Box',
-    image: '/warm-brick-wall.jpg',
-    client: 'Kopi Kenangan Sejahtera',
-    location: 'Kediri',
-    description: 'Neon box akrilik profil aluminium dengan stiker oracal tembus cahaya berdaya tahan tinggi.'
-  },
-  {
-    id: 'f3',
-    title: 'Fasad ACP & Signboard Ruko',
-    category: 'Fasad ACP',
-    image: '/hero-bg.png',
-    client: 'Apotek Sahabat Medika',
-    location: 'Banyuwangi',
-    description: 'Renovasi fasad gedung ruko modern menggunakan ACP seven dan logo laser akrilik timbul.'
-  },
-  {
-    id: 'f4',
-    title: 'Papan Nama Toko Plat Galvanis Cat Duco',
-    category: 'Papan Nama',
-    image: '/hero-bg.webp',
-    client: 'Minimarket Barokah Mart',
-    location: 'Jember',
-    description: 'Papan nama toko plat galvanis tahan cuaca dengan cat duco mobil dan finishing clear coat glossy.'
-  },
-  {
-    id: 'f5',
-    title: 'Neon Flex Custom Interior Cafe',
-    category: 'Neon Flex',
-    image: '/warm-brick-wall.jpg',
-    client: 'Senja Roastery & Eatery',
-    location: 'Kediri',
-    description: 'Instalasi neon flex silikon 12V untuk backdrop photobooth dengan cahaya warm white dan pink lembut.'
-  },
-  {
-    id: 'f6',
-    title: 'Billboard Rangka Baja 4x8 Meter',
-    category: 'Billboard',
-    image: '/hero-bg.png',
-    client: 'Perumahan Grand Permata',
-    location: 'Jember',
-    description: 'Konstruksi billboard tiang ganda rangka baja pipa besi kokoh standar keamanan dinas pekerjaan umum.'
-  }
-]
 
 useSeoMeta({
   title: 'Portofolio Signage & Huruf Timbul | Sonar Advertising',
@@ -115,10 +67,6 @@ useSeoMeta({
 
 const portfolio = ref([])
 const loading = ref(true)
-
-const displayPortfolio = computed(() => {
-  return portfolio.value.length > 0 ? portfolio.value : fallbackPortfolio
-})
 
 const loadPortfolio = async () => {
   loading.value = true

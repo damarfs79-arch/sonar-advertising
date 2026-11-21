@@ -29,20 +29,31 @@
         <SkeletonCard v-for="n in 6" :key="n" />
       </div>
 
-      <!-- Articles Grid: 6 Articles Directly (3x2 on desktop) -->
-      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Articles Grid -->
+      <div v-else-if="posts.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <BlogCard
-          v-for="post in displayPosts"
+          v-for="post in posts"
           :key="post.id || post.slug"
           :post="post"
         />
+      </div>
+
+      <!-- Empty State -->
+      <div v-else class="text-center py-16 bg-neutral-50 rounded-2xl border border-neutral-200/80">
+        <div class="w-12 h-12 rounded-xl bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center text-brand-orange mx-auto mb-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
+        </div>
+        <p class="text-neutral-700 font-semibold">Belum Ada Artikel</p>
+        <p class="text-neutral-500 text-sm mt-1">Artikel dapat ditambahkan melalui panel admin.</p>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import SkeletonCard from '@/components/ui/SkeletonCard.vue'
 import SectionLabel from '@/components/ui/SectionLabel.vue'
 import BlogCard from '@/components/ui/BlogCard.vue'
@@ -50,75 +61,6 @@ import { blogService } from '@/services/api/blog.service'
 
 const posts = ref([])
 const loading = ref(true)
-
-// Fallback high-quality articles if API is offline
-const fallbackPosts = [
-  {
-    id: 1,
-    title: 'Panduan Memilih Bahan Huruf Timbul: Stainless, Akrilik, atau Galvanis?',
-    slug: 'panduan-memilih-bahan-huruf-timbul-stainless-akrilik-galvanis',
-    summary: 'Panduan komprehensif menentukan bahan huruf timbul terbaik sesuai kebutuhan lokasi toko, ketahanan cuaca di Jawa Timur, dan estetika bisnis Anda.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Tips Material',
-    published_at: '2026-10-15',
-  },
-  {
-    id: 2,
-    title: 'Strategi Efektif Neon Box Akrilik LED untuk Menarik Pengunjung Cafe dan Retail',
-    slug: 'strategi-efektif-neon-box-akrilik-led-cafe-toko-retail',
-    summary: 'Mengapa visibilitas malam hari sangat menentukan foot traffic toko retail dan kafe, serta tips memilih modul LED hemat daya berkualitas tinggi.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Desain & Branding',
-    published_at: '2026-10-22',
-  },
-  {
-    id: 3,
-    title: 'Prosedur dan Syarat Perizinan Reklame Outdoor & Billboard di Jember dan Kediri',
-    slug: 'prosedur-syarat-perizinan-reklame-outdoor-jember-kediri',
-    summary: 'Langkah-langkah resmi mengurus izin penyelenggaraan reklame, pajak reklame daerah (Bapenda), dan standar keamanan konstruksi billboard di Jawa Timur.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Regulasi & Izin',
-    published_at: '2026-10-29',
-  },
-  {
-    id: 4,
-    title: 'Kelebihan Fasad ACP (Aluminium Composite Panel) untuk Modernisasi Bangunan Toko',
-    slug: 'kelebihan-fasad-acp-aluminium-composite-panel-toko-kantor',
-    summary: 'Ubah tampilan ruko atau kantor lama menjadi modern dan profesional dengan pelapisan ACP Seven / Alucobond tahan panas dan anti bocor.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Fasad & Konstruksi',
-    published_at: '2026-11-04',
-  },
-  {
-    id: 5,
-    title: 'Tips Perawatan Neon Flex Custom agar Awet dan Tetap Terang Bertahun-tahun',
-    slug: 'tips-perawatan-neon-flex-custom-awet-terang',
-    summary: 'Cara merawat instalasi neon flex interior kafe dan photobooth agar trafo stabil, silikon tidak menguning, dan cahaya LED tetap menyala rata.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Perawatan Signage',
-    published_at: '2026-11-10',
-  },
-  {
-    id: 6,
-    title: 'Membangun Identitas Visual Toko yang Menonjol di Kawasan Komersial Padat',
-    slug: 'membangun-identitas-visual-toko-kawasan-komersial-padat',
-    summary: 'Tips menentukan ukuran, sudut pandang (sightline), dan hierarki tipografi plang nama toko agar mudah dikenali pengendara jalan raya.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Strategi Bisnis',
-    published_at: '2026-11-16',
-  }
-]
-
-const displayPosts = computed(() => {
-  if (posts.value.length >= 6) {
-    return posts.value.slice(0, 6)
-  }
-  if (posts.value.length > 0) {
-    const needed = 6 - posts.value.length
-    return [...posts.value, ...fallbackPosts.slice(0, needed)]
-  }
-  return fallbackPosts
-})
 
 const loadBlog = async () => {
   loading.value = true
@@ -130,7 +72,6 @@ const loadBlog = async () => {
     }
     posts.value = Array.isArray(rawData) ? rawData : []
   } catch (err) {
-    console.error('Error loading blog articles:', err)
     posts.value = []
   } finally {
     loading.value = false

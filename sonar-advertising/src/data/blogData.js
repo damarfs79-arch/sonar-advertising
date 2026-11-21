@@ -19,7 +19,7 @@ export const fallbackPosts = [
       <h2>Kesimpulan & Rekomendasi</h2>
       <p>Untuk identitas kantor formal dan elegan, pilihlah Stainless Steel. Untuk kafe, resto, dan toko modern yang ramai di malam hari, pilihlah Akrilik LED. Tim teknis Sonar Advertising siap membantu survei lokasi dan konsultasi material terbaik di workshop kami di Jember dan Kediri.</p>
     `,
-    thumbnail: '/hero-bg.webp',
+    thumbnail: null,
     category: 'Tips Material',
     tags: ['huruf timbul', 'stainless', 'akrilik', 'advertising jember', 'signage'],
     published_at: '2026-10-15',
@@ -43,7 +43,7 @@ export const fallbackPosts = [
       <h2>Memilih Profil Rangka yang Tepat</h2>
       <p>Pilihlah rangka aluminium ekstrusi anti karat untuk ketahanan outdoor maksimal, dilengkapi ventilasi sirkulasi udara mikro agar trafo power supply tidak mengalami panas berlebih (overheat).</p>
     `,
-    thumbnail: '/hero-bg.png',
+    thumbnail: null,
     category: 'Desain & Branding',
     tags: ['neon box', 'kafe jember', 'led display', 'reklame'],
     published_at: '2026-10-22',
@@ -68,7 +68,7 @@ export const fallbackPosts = [
       <h2>Layanan Pengurusan Izin Sonar Advertising</h2>
       <p>Sonar Advertising menyediakan layanan terpadu mulai dari produksi fisik plang reklame hingga kepengurusan izin legalitas resmi dan pembayaran pajak daerah di wilayah Jember, Kediri, dan sekitarnya.</p>
     `,
-    thumbnail: '/hero-bg.webp',
+    thumbnail: null,
     category: 'Regulasi & Izin',
     tags: ['pajak reklame', 'izin billboard', 'advertising kediri', 'pemkab jember'],
     published_at: '2026-10-29',
@@ -89,7 +89,7 @@ export const fallbackPosts = [
         <li><strong>Perawatan Sangat Ringan:</strong> Debu dan noda jalan raya mudah dibersihkan hanya dengan semprotan air sabun ringan tanpa perlu pengecatan ulang berkala.</li>
       </ul>
     `,
-    thumbnail: '/hero-bg.png',
+    thumbnail: null,
     category: 'Fasad & Konstruksi',
     tags: ['fasad acp', 'acp seven', 'renovasi ruko', 'konstruksi jember'],
     published_at: '2026-11-04',
@@ -112,7 +112,7 @@ export const fallbackPosts = [
       <h2>3. Bersihkan dengan Kain Mikrofiber Kering</h2>
       <p>Gunakan kain mikrofiber lembut untuk menyeka debu permukaan silikon secara berkala tanpa menggunakan cairan kimia keras yang dapat merusak lapisan pelindung.</p>
     `,
-    thumbnail: '/hero-bg.webp',
+    thumbnail: null,
     category: 'Perawatan Signage',
     tags: ['neon flex', 'dekorasi kafe', 'perawatan led', 'tips branding'],
     published_at: '2026-11-10',
@@ -133,7 +133,7 @@ export const fallbackPosts = [
         <li><strong>Kekuatan Kontras Warna:</strong> Gunakan kontras warna tinggi antara huruf dan latar belakang (misalnya huruf putih di atas plat hitam atau oranye menyala).</li>
       </ul>
     `,
-    thumbnail: '/hero-bg.png',
+    thumbnail: null,
     category: 'Strategi Bisnis',
     tags: ['identitas visual', 'plang nama', 'branding toko', 'advertising'],
     published_at: '2026-11-16',

@@ -198,10 +198,7 @@ const resetFilters = () => {
 }
 
 const allPosts = computed(() => {
-  if (posts.value.length > 0) {
-    return posts.value
-  }
-  return fallbackPosts
+  return posts.value
 })
 
 const filteredPosts = computed(() => {
