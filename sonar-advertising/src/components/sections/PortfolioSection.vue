@@ -65,7 +65,7 @@ const fallbackPortfolio = [
     id: 'f2',
     title: 'Neon Box Akrilik Bulat Dua Sisi',
     category: 'Neon Box',
-    image: '/hero-bg.png',
+    image: '/warm-brick-wall.jpg',
     client: 'Kopi Kenangan Sejahtera',
     location: 'Kediri',
     description: 'Neon box akrilik profil aluminium dengan stiker oracal tembus cahaya berdaya tahan tinggi.'
@@ -74,7 +74,7 @@ const fallbackPortfolio = [
     id: 'f3',
     title: 'Fasad ACP & Signboard Ruko',
     category: 'Fasad ACP',
-    image: '/hero-bg.webp',
+    image: '/hero-bg.png',
     client: 'Apotek Sahabat Medika',
     location: 'Banyuwangi',
     description: 'Renovasi fasad gedung ruko modern menggunakan ACP seven dan logo laser akrilik timbul.'

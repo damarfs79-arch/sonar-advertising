@@ -150,6 +150,7 @@ import SkeletonCard from '@/components/ui/SkeletonCard.vue'
 import BlogCard from '@/components/ui/BlogCard.vue'
 import CtaContactSection from '@/components/sections/CtaContactSection.vue'
 import { blogService } from '@/services/api/blog.service'
+import { fallbackPosts } from '@/data/blogData.js'
 import { useSeoMeta } from '@/composables/useSeoMeta'
 
 useSeoMeta({
@@ -175,63 +176,7 @@ const categories = [
   'Strategi Bisnis'
 ]
 
-// Fallback high-quality articles if API is offline
-const fallbackPosts = [
-  {
-    id: 1,
-    title: 'Panduan Memilih Bahan Huruf Timbul: Stainless, Akrilik, atau Galvanis?',
-    slug: 'panduan-memilih-bahan-huruf-timbul-stainless-akrilik-galvanis',
-    summary: 'Panduan komprehensif menentukan bahan huruf timbul terbaik sesuai kebutuhan lokasi toko, ketahanan cuaca di Jawa Timur, dan estetika bisnis Anda.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Tips Material',
-    published_at: '2026-10-15',
-  },
-  {
-    id: 2,
-    title: 'Strategi Efektif Neon Box Akrilik LED untuk Menarik Pengunjung Cafe dan Retail',
-    slug: 'strategi-efektif-neon-box-akrilik-led-cafe-toko-retail',
-    summary: 'Mengapa visibilitas malam hari sangat menentukan foot traffic toko retail dan kafe, serta tips memilih modul LED hemat daya berkualitas tinggi.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Desain & Branding',
-    published_at: '2026-10-22',
-  },
-  {
-    id: 3,
-    title: 'Prosedur dan Syarat Perizinan Reklame Outdoor & Billboard di Jember dan Kediri',
-    slug: 'prosedur-syarat-perizinan-reklame-outdoor-jember-kediri',
-    summary: 'Langkah-langkah resmi mengurus izin penyelenggaraan reklame, pajak reklame daerah (Bapenda), dan standar keamanan konstruksi billboard di Jawa Timur.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Regulasi & Izin',
-    published_at: '2026-10-29',
-  },
-  {
-    id: 4,
-    title: 'Kelebihan Fasad ACP (Aluminium Composite Panel) untuk Modernisasi Bangunan Toko',
-    slug: 'kelebihan-fasad-acp-aluminium-composite-panel-toko-kantor',
-    summary: 'Ubah tampilan ruko atau kantor lama menjadi modern dan profesional dengan pelapisan ACP Seven / Alucobond tahan panas dan anti bocor.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Fasad & Konstruksi',
-    published_at: '2026-11-04',
-  },
-  {
-    id: 5,
-    title: 'Tips Perawatan Neon Flex Custom agar Awet dan Tetap Terang Bertahun-tahun',
-    slug: 'tips-perawatan-neon-flex-custom-awet-terang',
-    summary: 'Cara merawat instalasi neon flex interior kafe dan photobooth agar trafo stabil, silikon tidak menguning, dan cahaya LED tetap menyala rata.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Perawatan Signage',
-    published_at: '2026-11-10',
-  },
-  {
-    id: 6,
-    title: 'Membangun Identitas Visual Toko yang Menonjol di Kawasan Komersial Padat',
-    slug: 'membangun-identitas-visual-toko-kawasan-komersial-padat',
-    summary: 'Tips menentukan ukuran, sudut pandang (sightline), dan hierarki tipografi plang nama toko agar mudah dikenali pengendara jalan raya.',
-    thumbnail: '/hero-bg.webp',
-    category: 'Strategi Bisnis',
-    published_at: '2026-11-16',
-  }
-]
+// Fallback high-quality articles if API is offline (imported from @/data/blogData)
 
 let searchTimeout = null
 const handleSearchInput = () => {

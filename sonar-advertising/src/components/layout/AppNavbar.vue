@@ -1,13 +1,14 @@
 <template>
   <header
     :class="[
-      'fixed top-0 left-0 right-0 z-50 h-[78px] transition-[background,backdrop-filter,box-shadow] duration-500',
-      isScrolled ? 'scrolled' : ''
+      'fixed top-0 left-0 right-0 z-50 h-[78px] transition-[background,backdrop-filter,box-shadow] duration-300',
+      isScrolled ? 'scrolled' : '',
+      mobileOpen ? 'menu-open' : ''
     ]"
   >
     <div class="nav">
       <!-- Logo -->
-      <RouterLink to="/" class="brand" aria-label="Sonar Advertising">
+      <RouterLink to="/" class="brand" aria-label="Sonar Advertising" @click="mobileOpen = false">
         <img
           src="/logo.png"
           alt="Sonar Advertising"
@@ -40,50 +41,62 @@
 
       <!-- Mobile Menu Toggle -->
       <button
-        class="md:hidden p-2 text-white hover:text-brand-orange transition-colors cursor-pointer"
+        class="md:hidden p-2 text-white hover:text-brand-orange transition-colors cursor-pointer focus:outline-none rounded-lg"
         @click="mobileOpen = !mobileOpen"
         :aria-expanded="mobileOpen"
-        aria-label="Toggle menu"
+        :aria-label="mobileOpen ? 'Tutup menu' : 'Buka menu'"
       >
-        <svg v-if="!mobileOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <svg v-if="!mobileOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
-        <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
     </div>
+  </header>
 
-    <!-- Mobile Menu -->
+  <!-- Mobile Menu Overlay & Panel (Teleported to body to avoid header containing-block constraint) -->
+  <Teleport to="body">
     <Transition name="slide-down">
       <div
         v-if="mobileOpen"
-        class="md:hidden bg-[#141516]/98 backdrop-blur-xl border-t border-white/10 px-4 py-4 max-h-[calc(100vh-5rem)] overflow-y-auto shadow-2xl"
+        class="md:hidden fixed top-[78px] inset-x-0 bottom-0 bg-[#121315] border-t border-neutral-800/80 px-6 py-6 overflow-y-auto flex flex-col justify-between z-[9999] shadow-2xl"
+        style="height: calc(100dvh - 78px);"
       >
-        <nav class="flex flex-col gap-1 pb-4" aria-label="Navigasi Mobile">
+        <nav class="flex flex-col gap-1.5" aria-label="Navigasi Mobile">
           <RouterLink
             v-for="item in navItems"
             :key="item.path"
             :to="item.path"
-            class="text-gray-300 hover:text-white hover:bg-white/5 px-4 py-3 rounded-lg transition-colors duration-200 font-medium"
+            class="text-neutral-200 hover:text-white hover:bg-neutral-800/60 active:bg-neutral-800 px-4 py-3.5 rounded-xl transition-colors duration-150 font-medium text-base flex items-center justify-between"
             @click="mobileOpen = false"
           >
-            {{ item.label }}
+            <span>{{ item.label }}</span>
+            <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </RouterLink>
+        </nav>
+
+        <div class="pt-6 pb-4 border-t border-neutral-800/80 mt-6">
           <button
             @click="handleConsultationMobile"
-            class="btn primary mt-3 justify-center w-full"
+            class="btn primary justify-center w-full py-3.5 text-base font-semibold rounded-xl bg-gradient-to-r from-[#ff8a1f] to-[#ff6a00] text-white cursor-pointer shadow-lg"
           >
             Konsultasi Gratis
           </button>
-        </nav>
+          <p class="text-center text-xs text-neutral-500 mt-4 font-normal">
+            Sonar Advertising · Signage & Reklame Jawa Timur
+          </p>
+        </div>
       </div>
     </Transition>
-  </header>
+  </Teleport>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useScrolled } from '@/composables/useScrolled'
 
@@ -123,6 +136,18 @@ watch(
     mobileOpen.value = false
   }
 )
+
+watch(mobileOpen, (isOpen) => {
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = isOpen ? 'hidden' : ''
+  }
+})
+
+onUnmounted(() => {
+  if (typeof document !== 'undefined') {
+    document.body.style.overflow = ''
+  }
+})
 </script>
 
 <style scoped>
@@ -131,17 +156,32 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 30;
+  z-index: 50;
   height: 78px;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  transition: background .5s ease, backdrop-filter .5s ease, box-shadow .5s ease;
+  transition: background .3s ease, backdrop-filter .3s ease, box-shadow .3s ease;
   animation: dropIn .9s var(--ease) both;
 }
 header.scrolled {
-  background: rgba(20,21,22,.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 1px 0 rgba(255,255,255,.07);
+  background: rgba(18, 19, 21, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+header.menu-open {
+  background: #121315 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 10000 !important;
+}
+
+:global(.slide-down-enter-active),
+:global(.slide-down-leave-active) {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+:global(.slide-down-enter-from),
+:global(.slide-down-leave-to) {
+  opacity: 0;
+  transform: translateY(-8px);
 }
 .nav {
   max-width: 1280px;
