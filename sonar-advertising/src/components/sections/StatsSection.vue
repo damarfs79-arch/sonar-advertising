@@ -120,19 +120,21 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .stats {
-  background: #1a1b1d;
-  border-top: 1px solid rgba(255,255,255,.07);
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
 }
 .stats .in {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 36px 24px;
+  padding: 38px 24px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   text-align: center;
 }
 .stat + .stat {
-  border-left: 1px solid rgba(255,255,255,.08);
+  border-left: 1px solid #e5e7eb;
 }
 .stat b {
   display: block;
@@ -141,13 +143,15 @@ onBeforeUnmount(() => {
   color: var(--o, #ff7a00);
   letter-spacing: -.02em;
   font-variant-numeric: tabular-nums;
+  line-height: 1.1;
 }
 .stat span {
   display: block;
-  margin-top: 4px;
+  margin-top: 6px;
   font-size: 13px;
+  font-weight: 700;
   letter-spacing: .08em;
-  color: #aeb1b8;
+  color: #4b5563;
 }
 .reveal {
   opacity: 0;

@@ -11,69 +11,35 @@
       />
     </div>
 
-    <!-- Fallback: Reactive Brick Wall Illustration + 3D Stainless Steel Lettering -->
-    <div v-else class="hero-fallback" aria-hidden="true">
-      <!-- Dark Industrial Brick Wall Pattern -->
-      <div class="brick-wall">
-        <svg class="brick-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="brick-pat" width="140" height="70" patternUnits="userSpaceOnUse">
-              <rect width="140" height="70" fill="#131416" />
-              <!-- Row 1 -->
-              <rect x="2" y="2" width="136" height="31" rx="3" fill="#1b1c20" stroke="#0e0f11" stroke-width="2" />
-              <!-- Row 2 (Staggered) -->
-              <rect x="-68" y="37" width="136" height="31" rx="3" fill="#1c1d22" stroke="#0e0f11" stroke-width="2" />
-              <rect x="72" y="37" width="136" height="31" rx="3" fill="#191a1d" stroke="#0e0f11" stroke-width="2" />
-            </pattern>
-            <radialGradient id="brick-spot" cx="72%" cy="48%" r="65%">
-              <stop offset="0%" stop-color="#ff7a00" stop-opacity="0.22" />
-              <stop offset="35%" stop-color="#ff7a00" stop-opacity="0.08" />
-              <stop offset="70%" stop-color="#0d0e10" stop-opacity="0.85" />
-              <stop offset="100%" stop-color="#0a0a0c" stop-opacity="0.98" />
-            </radialGradient>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#brick-pat)" />
-          <rect width="100%" height="100%" fill="url(#brick-spot)" />
-        </svg>
-      </div>
+    <!-- Fallback: Warm Realistic Full-Width Brick Wall -->
+    <div v-else class="hero-fallback" aria-hidden="true"></div>
 
-      <!-- 3D Stainless Steel Signage Showcase on Brick Wall -->
-      <div class="sign3d-container">
-        <div class="sign3d">
-          <!-- Warm Amber Backlit LED Halo Glow -->
-          <div class="w-halo"></div>
-
-          <!-- 3D Extruded Metal Side Depth Shadow -->
-          <div class="w-depth">
-            <span class="sign-tag">HURUF TIMBUL</span>
-            <span class="sign-title">STAINLESS STEEL</span>
-            <span class="sign-sub">SONAR ADVERTISING</span>
-          </div>
-
-          <!-- Brushed Stainless Steel Specular Face -->
-          <div class="w-face">
-            <span class="sign-tag">HURUF TIMBUL</span>
-            <span class="sign-title">STAINLESS STEEL</span>
-            <span class="sign-sub">SONAR ADVERTISING</span>
-          </div>
-
-          <!-- Wall mounting studs -->
-          <div class="sign-studs">
-            <span class="stud stud-tl"></span>
-            <span class="stud stud-tr"></span>
-            <span class="stud stud-bl"></span>
-            <span class="stud stud-br"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Directional Gradient Scrim Overlay for Crystal Clear Text Readability -->
+    <!-- Directional Warm Scrim Overlay: Soft translucent dark vignette on left, completely open on right -->
     <div class="hero-overlay" aria-hidden="true"></div>
 
     <!-- Main Content -->
     <div class="wrap">
       <div class="content">
+        <!-- 3D Stainless Steel Signage (Desktop: right side; Mobile: positioned above headline) -->
+        <div v-if="!hasHeroImage || imageError" class="sign3d-container" aria-hidden="true">
+          <div class="sign3d">
+            <!-- Bright Warm Amber Backlit LED Halo Glow -->
+            <div class="w-halo"></div>
+
+            <!-- 3D Extruded Metal Side Depth Shadow & Bright Backlight -->
+            <div class="w-depth">
+              <span class="sign-top">Huruf Timbul</span>
+              <span class="sign-bottom">Stainless Steel</span>
+            </div>
+
+            <!-- Brushed Polished Stainless Steel Specular Face -->
+            <div class="w-face">
+              <span class="sign-top">Huruf Timbul</span>
+              <span class="sign-bottom">Stainless Steel</span>
+            </div>
+          </div>
+        </div>
+
         <h1>
           <span class="line"><span style="--d:0s">Visualkan</span></span>
           <span class="line"><span style="--d:.12s">Identitas <span class="grad">Bisnis Anda</span></span></span>
@@ -132,7 +98,7 @@ const imageError = ref(false)
   isolation: isolate;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   color: #ffffff;
-  background: #0d0e10;
+  background: #231a15;
 }
 
 /* Background image & Ken Burns */
@@ -152,61 +118,78 @@ const imageError = ref(false)
   object-fit: cover;
   object-position: 70% center;
   opacity: 0;
-  filter: brightness(0.65) contrast(1.15);
   transition: opacity 1.4s ease;
 }
 .hero-bg img.loaded {
   opacity: 1;
 }
 
-/* Fallback: Brick Wall & 3D Signage */
+/* Fallback: Warm Full-Width Brick Wall */
 .hero-fallback {
   position: absolute;
   inset: 0;
   z-index: -3;
   overflow: hidden;
+  background: #231a15 url('/warm-brick-wall.jpg') center center / cover no-repeat;
 }
-.brick-wall {
+
+/* Directional Scrim Overlay: Warm, translucent vignette on left, completely open on right */
+.hero-overlay {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.brick-svg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  z-index: -2;
+  background: 
+    linear-gradient(90deg, rgba(20, 18, 16, 0.72) 0%, rgba(20, 18, 16, 0.6) 38%, rgba(20, 18, 16, 0.22) 65%, transparent 100%),
+    linear-gradient(180deg, rgba(20, 18, 16, 0.4) 0%, transparent 20%, transparent 85%, rgba(20, 18, 16, 0.45) 100%);
 }
 
-/* 3D Signage on Brick Wall */
-.sign3d-container {
-  position: absolute;
-  right: 6%;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* 3D Signage container: Responsive positioning */
+@media (min-width: 769px) {
+  .sign3d-container {
+    position: absolute;
+    right: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sign3d {
+    transform: perspective(1000px) rotateY(-14deg) rotateX(4deg);
+    padding: 30px 40px;
+  }
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1280px) and (min-width: 769px) {
   .sign3d-container {
-    right: 2%;
-    transform: translateY(-50%) scale(0.85);
+    right: 3%;
+    transform: translateY(-50%) scale(0.88);
   }
 }
-@media (max-width: 1024px) {
+
+@media (max-width: 1024px) and (min-width: 769px) {
   .sign3d-container {
-    right: -2%;
-    opacity: 0.45;
-    transform: translateY(-40%) scale(0.72);
+    right: 0%;
+    opacity: 0.75;
+    transform: translateY(-45%) scale(0.75);
   }
 }
+
+/* Mobile: Displayed clearly right above the headline */
 @media (max-width: 768px) {
   .sign3d-container {
-    display: none;
+    position: relative;
+    display: inline-flex;
+    margin-bottom: 20px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .sign3d {
+    transform: perspective(600px) rotateY(-10deg) rotateX(3deg) scale(0.68);
+    transform-origin: left center;
+    padding: 10px 0;
   }
 }
 
@@ -216,33 +199,27 @@ const imageError = ref(false)
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 44px 60px;
-  background: rgba(18, 19, 22, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
   transform-style: preserve-3d;
-  transform: perspective(900px) rotateY(-11deg) rotateX(5deg);
-  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.9);
+  transition: transform 0.6s var(--ease, cubic-bezier(.22, 1, .36, 1));
 }
 
-/* Backlit warm amber LED glow */
+/* Bright warm golden/amber halo backlight glowing onto the bricks */
 .w-halo {
   position: absolute;
-  inset: -22px;
-  border-radius: 30px;
-  background: radial-gradient(ellipse at center, rgba(255, 122, 0, 0.42) 0%, rgba(255, 176, 102, 0.22) 42%, transparent 70%);
-  filter: blur(28px);
+  inset: -60px -80px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 185, 65, 0.85) 0%, rgba(255, 135, 25, 0.5) 45%, rgba(255, 105, 0, 0.18) 70%, transparent 85%);
+  filter: blur(45px);
   z-index: 1;
   pointer-events: none;
-  animation: pulseGlow 5s ease-in-out infinite alternate;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
 }
 @keyframes pulseGlow {
-  0% { opacity: 0.65; transform: scale(0.97); }
-  100% { opacity: 1; transform: scale(1.03); }
+  0% { opacity: 0.75; transform: scale(0.96); }
+  100% { opacity: 1; transform: scale(1.04); }
 }
 
-/* 3D Extruded Metal Side Depth */
+/* 3D Extruded Metal Side Depth & Strong Backlight */
 .w-depth {
   position: relative;
   z-index: 2;
@@ -251,45 +228,43 @@ const imageError = ref(false)
   align-items: center;
   text-align: center;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  user-select: none;
 }
-.w-depth .sign-tag {
-  font-size: clamp(14px, 1.8vw, 20px);
+.w-depth .sign-top {
+  font-size: clamp(38px, 5.2vw, 76px);
   font-weight: 800;
-  letter-spacing: 0.16em;
-  color: #111317;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: #1a1c20;
   text-shadow:
-    1px 1px 0 #9ca3af,
-    2px 2px 0 #6b7280,
-    3px 3px 0 #4b5563,
-    4px 5px 12px rgba(0, 0, 0, 0.95);
+    1px 1px 0 #cbd5e1,
+    2px 2px 0 #94a3b8,
+    3px 3px 0 #64748b,
+    4px 4px 0 #475569,
+    5px 6px 0 #334155,
+    6px 8px 18px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(255, 185, 65, 0.95),
+    0 0 75px rgba(255, 135, 25, 0.65);
 }
-.w-depth .sign-title {
-  font-size: clamp(24px, 3.2vw, 42px);
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  color: #111317;
+.w-depth .sign-bottom {
+  font-size: clamp(26px, 3.4vw, 48px);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  color: #1a1c20;
   margin-top: 6px;
   text-shadow:
-    1px 1px 0 #9ca3af,
-    2px 2px 0 #6b7280,
-    3px 3px 0 #4b5563,
-    4px 4px 0 #374151,
-    5px 5px 0 #1f2937,
-    6px 8px 18px rgba(0, 0, 0, 0.98);
-}
-.w-depth .sign-sub {
-  font-size: clamp(10px, 1.2vw, 13px);
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  color: #111317;
-  margin-top: 10px;
-  text-shadow:
-    1px 1px 0 #9ca3af,
-    2px 2px 0 #6b7280,
-    3px 4px 10px rgba(0, 0, 0, 0.9);
+    1px 1px 0 #cbd5e1,
+    2px 2px 0 #94a3b8,
+    3px 3px 0 #64748b,
+    4px 4px 0 #475569,
+    5px 6px 0 #334155,
+    6px 8px 18px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(255, 185, 65, 0.95),
+    0 0 75px rgba(255, 135, 25, 0.65);
 }
 
-/* Brushed Stainless Steel Front Face */
+/* Brushed Polished Stainless Steel Front Face */
 .w-face {
   position: absolute;
   inset: 0;
@@ -301,62 +276,30 @@ const imageError = ref(false)
   text-align: center;
   pointer-events: none;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  user-select: none;
 }
-.w-face .sign-tag {
-  font-size: clamp(14px, 1.8vw, 20px);
+.w-face .sign-top {
+  font-size: clamp(38px, 5.2vw, 76px);
   font-weight: 800;
-  letter-spacing: 0.16em;
-  background: linear-gradient(135deg, #ffffff 0%, #fed7aa 35%, #ff7a00 75%, #ffffff 100%);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 25%, #cbd5e1 50%, #f8fafc 75%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.6));
+  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.85));
 }
-.w-face .sign-title {
-  font-size: clamp(24px, 3.2vw, 42px);
-  font-weight: 900;
-  letter-spacing: 0.1em;
+.w-face .sign-bottom {
+  font-size: clamp(26px, 3.4vw, 48px);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
   margin-top: 6px;
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 25%, #94a3b8 50%, #e2e8f0 75%, #ffffff 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 30%, #94a3b8 55%, #e2e8f0 80%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.7));
-}
-.w-face .sign-sub {
-  font-size: clamp(10px, 1.2vw, 13px);
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  margin-top: 10px;
-  background: linear-gradient(135deg, #cbd5e1 0%, #ffffff 50%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Mounting studs */
-.sign-studs .stud {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #9ca3af 50%, #374151 100%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-}
-.stud-tl { top: 12px; left: 14px; }
-.stud-tr { top: 12px; right: 14px; }
-.stud-bl { bottom: 12px; left: 14px; }
-.stud-br { bottom: 12px; right: 14px; }
-
-/* Directional Scrim Overlay */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background: 
-    linear-gradient(90deg, rgba(13,14,16,0.97) 0%, rgba(13,14,16,0.92) 40%, rgba(13,14,16,0.72) 65%, rgba(13,14,16,0.35) 100%),
-    linear-gradient(0deg, #141516 0%, transparent 40%),
-    linear-gradient(180deg, rgba(13,14,16,0.85) 0%, transparent 30%);
+  filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.75));
 }
 
 @keyframes kenburns {
@@ -380,7 +323,7 @@ h1 {
   font-weight: 800;
   letter-spacing: -.025em;
   color: #ffffff !important;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.85);
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.95), 0 1px 4px rgba(0, 0, 0, 0.9);
 }
 .line {
   display: block;
@@ -391,7 +334,7 @@ h1 {
   display: block;
   color: #ffffff !important;
   transform: translate3d(0,110%,0);
-  animation: lineUp 1.1s var(--ease) forwards;
+  animation: lineUp 1.1s var(--ease, cubic-bezier(.22, 1, .36, 1)) forwards;
   animation-delay: calc(.35s + var(--d, 0s));
 }
 @keyframes lineUp {
@@ -416,9 +359,9 @@ h1 {
   max-width: 580px;
   font-size: 18px;
   line-height: 1.65;
-  color: #e5e7eb !important;
+  color: #f3f4f6 !important;
   font-weight: 400;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
 }
 .cta {
   margin-top: 32px;
@@ -429,7 +372,7 @@ h1 {
 .fade {
   opacity: 0;
   transform: translate3d(0,18px,0);
-  animation: fadeUp 1s var(--ease) forwards;
+  animation: fadeUp 1s var(--ease, cubic-bezier(.22, 1, .36, 1)) forwards;
   animation-delay: calc(.4s + var(--d, 0s));
 }
 @keyframes fadeUp {
@@ -447,7 +390,7 @@ h1 {
   font-size: 14px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform .45s var(--ease), box-shadow .45s var(--ease), background .3s, border-color .3s;
+  transition: transform .45s var(--ease, cubic-bezier(.22, 1, .36, 1)), box-shadow .45s var(--ease, cubic-bezier(.22, 1, .36, 1)), background .3s, border-color .3s;
 }
 .btn.primary {
   background: linear-gradient(135deg, #ff8a1f, #ff6a00);
@@ -459,14 +402,14 @@ h1 {
   box-shadow: 0 18px 30px -14px rgba(255,122,0,.95);
 }
 .btn.ghost {
-  background: rgba(255,255,255,.04);
-  border-color: rgba(255,255,255,.22);
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.3);
   color: #fff;
 }
 .btn.ghost:hover {
   transform: translateY(-2px);
   border-color: var(--o, #ff7a00);
-  background: rgba(255,122,0,.08);
+  background: rgba(255,122,0,.12);
 }
 .btn svg {
   width: 18px;
@@ -476,7 +419,7 @@ h1 {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: transform .45s var(--ease);
+  transition: transform .45s var(--ease, cubic-bezier(.22, 1, .36, 1));
 }
 .btn:hover .arr {
   transform: translateX(4px);
