@@ -17,7 +17,7 @@ class SettingsSeeder extends Seeder
             ],
             [
                 'key' => 'site_description',
-                'value' => 'Digital Marketing Agency',
+                'value' => 'Jasa Pembuatan Huruf Timbul, Neon Box & Reklame di Jember, Kediri & Jawa Timur',
                 'type' => 'text'
             ],
             [
@@ -32,37 +32,32 @@ class SettingsSeeder extends Seeder
             ],
             [
                 'key' => 'site_phone',
-                'value' => '+62 812 3456 7890',
+                'value' => '+62 855-4000-0007',
                 'type' => 'text'
             ],
             [
                 'key' => 'site_email',
-                'value' => 'info@sonar-advertising.com',
+                'value' => 'sonaradvertising@gmail.com',
                 'type' => 'email'
             ],
             [
                 'key' => 'site_address',
-                'value' => 'Jl. Merdeka No. 123, Jakarta',
+                'value' => 'Kalimalang, Mayangan, Gumukmas, Jember, Jawa Timur',
                 'type' => 'text'
             ],
             [
                 'key' => 'facebook_url',
-                'value' => 'https://facebook.com/sonaradvertising',
+                'value' => 'https://www.facebook.com/share/195r6jnMJE/?mibextid=wwXIfr',
                 'type' => 'url'
             ],
             [
                 'key' => 'instagram_url',
-                'value' => 'https://instagram.com/sonaradvertising',
+                'value' => 'https://instagram.com/sonaradv',
                 'type' => 'url'
             ],
             [
-                'key' => 'linkedin_url',
-                'value' => 'https://linkedin.com/company/sonaradvertising',
-                'type' => 'url'
-            ],
-            [
-                'key' => 'twitter_url',
-                'value' => 'https://twitter.com/sonaradvertising',
+                'key' => 'tiktok_url',
+                'value' => 'https://www.tiktok.com/@sonar.adv',
                 'type' => 'url'
             ]
         ];

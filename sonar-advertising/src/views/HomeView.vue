@@ -44,18 +44,32 @@ useSeoMeta({
         'priceRange': '$$',
         'address': {
           '@type': 'PostalAddress',
-          'streetAddress': 'Jl. Gajah Mada XX, Kaliwates, Kec. Kaliwates',
+          'streetAddress': 'Kalimalang, Mayangan, Gumukmas',
           'addressLocality': 'Jember',
           'addressRegion': 'Jawa Timur',
-          'postalCode': '68133',
+          'postalCode': '68165',
           'addressCountry': 'ID'
         },
         'sameAs': [
-          'https://www.instagram.com/sonar.advertising',
           'https://www.instagram.com/sonaradv',
+          'https://www.instagram.com/sonar.advertising',
           'https://www.tiktok.com/@sonar.adv',
           'https://www.facebook.com/share/195r6jnMJE/?mibextid=wwXIfr'
         ]
+      },
+      {
+        '@type': ['LocalBusiness', 'ProfessionalService'],
+        '@id': 'https://sonaradvertising.com/#workshop-kediri',
+        'name': 'Sonar Advertising - Workshop Kediri',
+        'telephone': '+6285540000007',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': 'Lingkungan Jl. Raya Kleco, RT.31/RW.07, Jamsaren, Kec. Pesantren',
+          'addressLocality': 'Kediri',
+          'addressRegion': 'Jawa Timur',
+          'postalCode': '64132',
+          'addressCountry': 'ID'
+        }
       },
       {
         '@type': 'WebSite',
