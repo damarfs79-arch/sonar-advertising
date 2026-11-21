@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sonaradvertising.com/</loc>
+    <loc>https://sonaradv.fsss.my.id/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sonaradvertising.com/about</loc>
+    <loc>https://sonaradv.fsss.my.id/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sonaradvertising.com/services</loc>
+    <loc>https://sonaradv.fsss.my.id/services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sonaradvertising.com/portfolio</loc>
+    <loc>https://sonaradv.fsss.my.id/portfolio</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sonaradvertising.com/blog</loc>
+    <loc>https://sonaradv.fsss.my.id/blog</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sonaradvertising.com/testimonials</loc>
+    <loc>https://sonaradv.fsss.my.id/testimonials</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sonaradvertising.com/contact</loc>
+    <loc>https://sonaradv.fsss.my.id/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sonaradvertising.com/privacy</loc>
+    <loc>https://sonaradv.fsss.my.id/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://sonaradvertising.com/terms</loc>
+    <loc>https://sonaradv.fsss.my.id/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

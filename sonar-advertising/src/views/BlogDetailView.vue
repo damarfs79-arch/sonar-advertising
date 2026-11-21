@@ -176,7 +176,7 @@ useSeoMeta(() => {
   const title = `${post.value.title} | Sonar Advertising`
   const description = post.value.summary || 'Artikel wawasan advertising dan reklame dari Sonar Advertising.'
   const image = getImageUrl(post.value.thumbnail)
-  const canonicalUrl = `https://sonaradvertising.com/blog/${post.value.slug || post.value.id}`
+  const canonicalUrl = `https://sonaradv.fsss.my.id/blog/${post.value.slug || post.value.id}`
 
   return {
     title,
@@ -203,7 +203,7 @@ useSeoMeta(() => {
             'name': 'Sonar Advertising',
             'logo': {
               '@type': 'ImageObject',
-              'url': 'https://sonaradvertising.com/favicon.png'
+              'url': 'https://sonaradv.fsss.my.id/favicon.png'
             }
           }
         }

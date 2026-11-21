@@ -24,7 +24,7 @@ useSeoMeta({
     'provider': {
       '@type': ['LocalBusiness', 'ProfessionalService'],
       'name': 'Sonar Advertising',
-      'url': 'https://sonaradvertising.com',
+      'url': 'https://sonaradv.fsss.my.id',
       'telephone': '+6285540000007',
       'sameAs': [
         'https://www.instagram.com/sonar.advertising',

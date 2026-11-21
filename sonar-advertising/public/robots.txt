@@ -4,4 +4,4 @@ Disallow: /admin
 Disallow: /login
 Disallow: /admin/*
 
-Sitemap: https://sonaradvertising.com/sitemap.xml
+Sitemap: https://sonaradv.fsss.my.id/sitemap.xml

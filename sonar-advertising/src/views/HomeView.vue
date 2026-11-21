@@ -34,12 +34,12 @@ useSeoMeta({
     '@graph': [
       {
         '@type': ['LocalBusiness', 'ProfessionalService'],
-        '@id': 'https://sonaradvertising.com/#localbusiness',
+        '@id': 'https://sonaradv.fsss.my.id/#localbusiness',
         'name': 'Sonar Advertising',
         'alternateName': 'Sonar Advertising Signmaker & Promotion',
-        'url': 'https://sonaradvertising.com',
-        'logo': 'https://sonaradvertising.com/logo.png',
-        'image': 'https://sonaradvertising.com/logo.png',
+        'url': 'https://sonaradv.fsss.my.id',
+        'logo': 'https://sonaradv.fsss.my.id/logo.png',
+        'image': 'https://sonaradv.fsss.my.id/logo.png',
         'telephone': '+6285540000007',
         'priceRange': '$$',
         'address': {
@@ -59,7 +59,7 @@ useSeoMeta({
       },
       {
         '@type': ['LocalBusiness', 'ProfessionalService'],
-        '@id': 'https://sonaradvertising.com/#workshop-kediri',
+        '@id': 'https://sonaradv.fsss.my.id/#workshop-kediri',
         'name': 'Sonar Advertising - Workshop Kediri',
         'telephone': '+6285540000007',
         'address': {
@@ -73,10 +73,10 @@ useSeoMeta({
       },
       {
         '@type': 'WebSite',
-        '@id': 'https://sonaradvertising.com/#website',
-        'url': 'https://sonaradvertising.com',
+        '@id': 'https://sonaradv.fsss.my.id/#website',
+        'url': 'https://sonaradv.fsss.my.id',
         'name': 'Sonar Advertising',
-        'publisher': { '@id': 'https://sonaradvertising.com/#localbusiness' }
+        'publisher': { '@id': 'https://sonaradv.fsss.my.id/#localbusiness' }
       }
     ]
   }

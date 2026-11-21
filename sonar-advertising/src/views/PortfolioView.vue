@@ -56,7 +56,7 @@ useSeoMeta({
     'creator': {
       '@type': ['LocalBusiness', 'ProfessionalService'],
       'name': 'Sonar Advertising',
-      'url': 'https://sonaradvertising.com',
+      'url': 'https://sonaradv.fsss.my.id',
       'sameAs': [
         'https://www.instagram.com/sonar.advertising',
         'https://www.instagram.com/sonaradv'

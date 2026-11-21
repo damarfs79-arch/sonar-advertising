@@ -7,7 +7,7 @@ Route::get('/', function () {
 });
 
 Route::get('/sitemap.xml', function () {
-    $baseUrl = config('app.url', 'https://sonaradvertising.com');
+    $baseUrl = config('app.url', 'https://sonaradv.fsss.my.id');
     $posts = \App\Models\BlogPost::where('status', 'published')->get();
     
     $xml = '<?xml version="1.0" encoding="UTF-8"?>';
